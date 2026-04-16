@@ -42,9 +42,9 @@ const AboutSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-10 md:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-2">
+          <h2 className="text-2xl md:text-4xl font-black tracking-tight mb-2">
             {tr(aboutContent.title) || t('section.about')}
           </h2>
         </motion.div>
@@ -54,17 +54,18 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="text-center lg:text-left"
           >
-            <div className="mb-8">
-              <h3 className="text-2xl md:text-3xl font-black text-primary mb-1">
+            <div className="mb-6 md:mb-8">
+              <h3 className="text-xl md:text-3xl font-black text-primary mb-1">
                 {tr(aboutContent.leader) || t('about.leader')}
               </h3>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-[10px] md:text-sm uppercase tracking-[0.2em] font-bold">
                 {tr(aboutContent.leader_title) || t('about.leaderTitle')}
               </p>
             </div>
 
-            <p className="text-foreground/70 leading-relaxed mb-8 text-sm md:text-base">
+            <p className="text-foreground/70 leading-relaxed mb-8 text-sm md:text-base max-w-2xl mx-auto lg:mx-0">
               {tr(aboutContent.description) || t('about.partyDesc')}
             </p>
 

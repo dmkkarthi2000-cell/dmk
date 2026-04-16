@@ -18,19 +18,19 @@ import { useAdminData } from '@/hooks/useAdminData';
 import { motion } from 'framer-motion';
 
 const SectionCard = ({ icon: Icon, title, description, children }: { icon: any; title: string; description?: string; children: React.ReactNode }) => (
-  <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-    <CardHeader className="pb-3">
-      <div className="flex items-center gap-3">
-        <div className="p-2 rounded-xl bg-primary/10">
-          <Icon className="h-5 w-5 text-primary" />
+  <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm overflow-hidden">
+    <CardHeader className="p-4 md:p-6 pb-2 md:pb-4">
+      <div className="flex items-center gap-2.5 md:gap-3">
+        <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-primary/10">
+          <Icon className="h-4 w-4 md:h-5 md:w-5 text-primary" />
         </div>
         <div>
-          <CardTitle className="text-lg">{title}</CardTitle>
-          {description && <CardDescription className="text-xs mt-0.5">{description}</CardDescription>}
+          <CardTitle className="text-base md:text-lg font-bold">{title}</CardTitle>
+          {description && <CardDescription className="text-[10px] md:text-xs mt-0.5">{description}</CardDescription>}
         </div>
       </div>
     </CardHeader>
-    <CardContent>{children}</CardContent>
+    <CardContent className="p-4 md:p-6 pt-0 md:pt-0">{children}</CardContent>
   </Card>
 );
 
@@ -98,35 +98,35 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
       {/* Header */}
       <header className="sticky top-0 z-40 bg-card/80 backdrop-blur-xl border-b border-border/50">
-        <div className="container mx-auto flex items-center justify-between h-16 px-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-dmk-gradient">
-              <LayoutDashboard className="h-5 w-5 text-primary-foreground" />
+        <div className="container mx-auto flex items-center justify-between h-14 md:h-16 px-3 md:px-6">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-dmk-gradient">
+              <LayoutDashboard className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-lg font-bold">DMK Admin</h1>
-              <p className="text-xs text-muted-foreground">Content Management</p>
+              <h1 className="text-sm md:text-lg font-bold leading-none">DMK Admin</h1>
+              <p className="hidden xs:block text-[10px] md:text-xs text-muted-foreground mt-0.5 md:mt-1">Content Management</p>
             </div>
           </div>
-          <Button variant="outline" size="sm" className="gap-2" onClick={logout}>
-            <LogOut className="h-4 w-4" /> Sign Out
+          <Button variant="outline" size="sm" className="gap-1.5 md:gap-2 h-8 md:h-9 text-xs" onClick={logout}>
+            <LogOut className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span className="hidden sm:inline">Sign Out</span>
           </Button>
         </div>
       </header>
 
-      <div className="container mx-auto p-4 md:p-6 space-y-6">
+      <div className="container mx-auto p-3 md:p-6 space-y-4 md:space-y-6">
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {statsCards.map((s) => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
               <Card className="border-0 shadow-md bg-card/80 backdrop-blur-sm hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 flex items-center gap-3">
-                  <div className={`p-2.5 rounded-xl bg-muted ${s.color}`}>
-                    <s.icon className="h-5 w-5" />
+                <CardContent className="p-3 md:p-4 flex items-center gap-2.5 md:gap-3">
+                  <div className={`p-2 md:p-2.5 rounded-lg md:rounded-xl bg-muted ${s.color}`}>
+                    <s.icon className="h-4 w-4 md:h-5 md:w-5" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold">{s.value}</p>
-                    <p className="text-xs text-muted-foreground">{s.label}</p>
+                    <p className="text-xl md:text-2xl font-black leading-none">{s.value}</p>
+                    <p className="text-[10px] md:text-xs text-muted-foreground mt-1 uppercase tracking-wider font-semibold">{s.label}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -134,15 +134,19 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        <Tabs defaultValue="content" className="space-y-6">
-          <TabsList className="grid grid-cols-3 sm:grid-cols-6 w-full bg-card/80 backdrop-blur-sm border border-border/50 p-1 h-auto">
-            <TabsTrigger value="content" className="gap-1.5 text-xs py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><Settings className="h-3.5 w-3.5" /> Content</TabsTrigger>
-            <TabsTrigger value="youtube" className="gap-1.5 text-xs py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><Youtube className="h-3.5 w-3.5" /> YouTube</TabsTrigger>
-            <TabsTrigger value="events" className="gap-1.5 text-xs py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><CalendarPlus className="h-3.5 w-3.5" /> Events</TabsTrigger>
-            <TabsTrigger value="gallery" className="gap-1.5 text-xs py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><Image className="h-3.5 w-3.5" /> Gallery</TabsTrigger>
-            <TabsTrigger value="news" className="gap-1.5 text-xs py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><Newspaper className="h-3.5 w-3.5" /> News</TabsTrigger>
-            <TabsTrigger value="social" className="gap-1.5 text-xs py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><Share2 className="h-3.5 w-3.5" /> Social</TabsTrigger>
-          </TabsList>
+        <Tabs defaultValue="content" className="space-y-4 md:space-y-6">
+          <div className="relative">
+            <TabsList className="flex items-center justify-start h-auto w-full bg-card/80 backdrop-blur-sm border border-border/50 p-1 overflow-x-auto no-scrollbar">
+              <div className="flex w-full min-w-max md:min-w-0 md:grid md:grid-cols-6 md:w-full gap-1">
+                <TabsTrigger value="content" className="flex-1 md:flex-none gap-1.5 text-xs py-2 md:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground select-none"><Settings className="h-3.5 w-3.5" /> Content</TabsTrigger>
+                <TabsTrigger value="youtube" className="flex-1 md:flex-none gap-1.5 text-xs py-2 md:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground select-none"><Youtube className="h-3.5 w-3.5" /> YouTube</TabsTrigger>
+                <TabsTrigger value="events" className="flex-1 md:flex-none gap-1.5 text-xs py-2 md:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground select-none"><CalendarPlus className="h-3.5 w-3.5" /> Events</TabsTrigger>
+                <TabsTrigger value="gallery" className="flex-1 md:flex-none gap-1.5 text-xs py-2 md:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground select-none"><Image className="h-3.5 w-3.5" /> Gallery</TabsTrigger>
+                <TabsTrigger value="news" className="flex-1 md:flex-none gap-1.5 text-xs py-2 md:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground select-none"><Newspaper className="h-3.5 w-3.5" /> News</TabsTrigger>
+                <TabsTrigger value="social" className="flex-1 md:flex-none gap-1.5 text-xs py-2 md:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground select-none"><Share2 className="h-3.5 w-3.5" /> Social</TabsTrigger>
+              </div>
+            </TabsList>
+          </div>
 
           {/* ==================== CONTENT TAB ==================== */}
           <TabsContent value="content">
@@ -207,12 +211,12 @@ const AdminDashboard = () => {
             <SectionCard icon={Share2} title="Social Media Links" description="Manage platform links and follower counts">
               <div className="space-y-3">
                 {socialMedia.map((item: any, i: number) => (
-                  <div key={i} className="grid grid-cols-2 md:grid-cols-5 gap-2 p-3 bg-muted/30 rounded-xl border border-border/50">
-                    <Input placeholder="Platform" value={item.platform} onChange={e => updateSocial(i, 'platform', e.target.value)} className="h-9" />
-                    <Input placeholder="Display Name" value={item.name} onChange={e => updateSocial(i, 'name', e.target.value)} className="h-9" />
-                    <Input placeholder="Followers" value={item.followers} onChange={e => updateSocial(i, 'followers', e.target.value)} className="h-9" />
-                    <Input placeholder="URL" value={item.url} onChange={e => updateSocial(i, 'url', e.target.value)} className="h-9" />
-                    <Button size="icon" variant="ghost" className="h-9 w-9" onClick={() => removeSocial(i)}><Trash2 className="h-3.5 w-3.5 text-destructive" /></Button>
+                  <div key={i} className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-5 gap-2 p-3 bg-muted/30 rounded-xl border border-border/50">
+                    <div className="space-y-1 xs:col-span-1"><Label className="text-[10px] font-medium md:hidden">Platform</Label><Input placeholder="Platform" value={item.platform} onChange={e => updateSocial(i, 'platform', e.target.value)} className="h-9 text-sm" /></div>
+                    <div className="space-y-1 xs:col-span-1"><Label className="text-[10px] font-medium md:hidden">Name</Label><Input placeholder="Display Name" value={item.name} onChange={e => updateSocial(i, 'name', e.target.value)} className="h-9 text-sm" /></div>
+                    <div className="space-y-1 xs:col-span-1"><Label className="text-[10px] font-medium md:hidden">Followers</Label><Input placeholder="Followers" value={item.followers} onChange={e => updateSocial(i, 'followers', e.target.value)} className="h-9 text-sm" /></div>
+                    <div className="space-y-1 xs:col-span-1"><Label className="text-[10px] font-medium md:hidden">URL</Label><Input placeholder="URL" value={item.url} onChange={e => updateSocial(i, 'url', e.target.value)} className="h-9 text-sm" /></div>
+                    <div className="flex items-end xs:col-span-1"><Button size="sm" variant="ghost" className="h-9 w-full md:w-9 text-destructive" onClick={() => removeSocial(i)}><Trash2 className="h-3.5 w-3.5 mr-2 md:mr-0" /> <span className="md:hidden">Remove</span></Button></div>
                   </div>
                 ))}
                 <div className="flex gap-2">
@@ -235,11 +239,11 @@ const AdminDashboard = () => {
                   </div>
                   <div className="overflow-x-auto">
                     <Table>
-                      <TableHeader><TableRow className="bg-muted/30"><TableHead>Name</TableHead><TableHead>URL</TableHead><TableHead className="text-center">Videos</TableHead><TableHead className="text-center">Shorts</TableHead><TableHead className="text-center">Playlists</TableHead><TableHead className="text-center">Active</TableHead><TableHead>Actions</TableHead></TableRow></TableHeader>
+                      <TableHeader><TableRow className="bg-muted/30"><TableHead className="text-[11px] md:text-sm">Name</TableHead><TableHead className="text-[11px] md:text-sm">URL</TableHead><TableHead className="text-center text-[11px] md:text-sm">Videos</TableHead><TableHead className="text-center text-[11px] md:text-sm">Shorts</TableHead><TableHead className="text-center text-[11px] md:text-sm">Playlists</TableHead><TableHead className="text-center text-[11px] md:text-sm">Active</TableHead><TableHead className="text-[11px] md:text-sm">Actions</TableHead></TableRow></TableHeader>
                       <TableBody>
                         {admin.channelsQuery.data?.map((ch: any) => (
                           <TableRow key={ch.id} className="hover:bg-muted/20">
-                            <TableCell className="font-medium">{ch.name}</TableCell>
+                            <TableCell className="font-semibold text-xs md:text-sm">{ch.name}</TableCell>
                             <TableCell><span className="text-xs text-muted-foreground max-w-[120px] truncate block">{ch.url}</span></TableCell>
                             <TableCell className="text-center"><Switch checked={ch.sync_videos !== false} onCheckedChange={(v) => admin.updateChannelMutation.mutate({ id: ch.id, sync_videos: v })} /></TableCell>
                             <TableCell className="text-center"><Switch checked={ch.sync_shorts !== false} onCheckedChange={(v) => admin.updateChannelMutation.mutate({ id: ch.id, sync_shorts: v })} /></TableCell>
@@ -298,15 +302,15 @@ const AdminDashboard = () => {
                   </div>
                   <div className="overflow-x-auto">
                     <Table>
-                      <TableHeader><TableRow className="bg-muted/30"><TableHead className="w-24">Thumb</TableHead><TableHead>Title</TableHead><TableHead>Channel</TableHead><TableHead>Type</TableHead><TableHead>Date</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>
+                      <TableHeader><TableRow className="bg-muted/30"><TableHead className="w-16 md:w-24 text-[11px] md:text-sm">Thumb</TableHead><TableHead className="text-[11px] md:text-sm">Title</TableHead><TableHead className="text-[11px] md:text-sm">Channel</TableHead><TableHead className="text-[11px] md:text-sm">Type</TableHead><TableHead className="text-[11px] md:text-sm">Date</TableHead><TableHead className="text-right text-[11px] md:text-sm">Actions</TableHead></TableRow></TableHeader>
                       <TableBody>
                         {admin.videosQuery.data?.filter((v: any) => videoFilter === 'all' || v.category === videoFilter).map((v: any) => (
                           <TableRow key={v.id} className="hover:bg-muted/20">
                             <TableCell>
-                              <div className="relative w-20 h-12 rounded-md overflow-hidden">
+                              <div className="relative w-14 h-9 md:w-20 md:h-12 rounded md:rounded-md overflow-hidden">
                                 <img src={v.thumbnail} alt="" className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 flex items-center justify-center bg-foreground/20">
-                                  <Play className="h-3 w-3 text-background" />
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                                  <Play className="h-2.5 w-2.5 md:h-3 md:w-3 text-white fill-white" />
                                 </div>
                               </div>
                             </TableCell>
@@ -338,25 +342,25 @@ const AdminDashboard = () => {
           <TabsContent value="events">
             <SectionCard icon={CalendarPlus} title="Events Management" description="Create and manage events">
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 bg-muted/20 rounded-xl border border-border/50">
-                  <div><Label className="text-xs font-medium">Title</Label><Input value={newEvent.title} onChange={e => setNewEvent({...newEvent, title: e.target.value})} className="mt-1" /></div>
-                  <div><Label className="text-xs font-medium">Date</Label><Input type="date" value={newEvent.date} onChange={e => setNewEvent({...newEvent, date: e.target.value})} className="mt-1" /></div>
-                  <div><Label className="text-xs font-medium">Category</Label><Input value={newEvent.category} onChange={e => setNewEvent({...newEvent, category: e.target.value})} className="mt-1" /></div>
-                  <div><Label className="text-xs font-medium">Image URL</Label><Input value={newEvent.image} onChange={e => setNewEvent({...newEvent, image: e.target.value})} className="mt-1" /></div>
-                  <div className="md:col-span-2"><Label className="text-xs font-medium">Description</Label><Textarea value={newEvent.description} onChange={e => setNewEvent({...newEvent, description: e.target.value})} className="mt-1" /></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3 md:p-4 bg-muted/20 rounded-xl border border-border/50">
+                  <div className="space-y-1"><Label className="text-xs font-medium">Title</Label><Input value={newEvent.title} onChange={e => setNewEvent({...newEvent, title: e.target.value})} className="h-9 text-sm" /></div>
+                  <div className="space-y-1"><Label className="text-xs font-medium">Date</Label><Input type="date" value={newEvent.date} onChange={e => setNewEvent({...newEvent, date: e.target.value})} className="h-9 text-sm" /></div>
+                  <div className="space-y-1"><Label className="text-xs font-medium">Category</Label><Input value={newEvent.category} onChange={e => setNewEvent({...newEvent, category: e.target.value})} className="h-9 text-sm" /></div>
+                  <div className="space-y-1"><Label className="text-xs font-medium">Image URL</Label><Input value={newEvent.image} onChange={e => setNewEvent({...newEvent, image: e.target.value})} className="h-9 text-sm" /></div>
+                  <div className="md:col-span-2 space-y-1"><Label className="text-xs font-medium">Description</Label><Textarea value={newEvent.description} onChange={e => setNewEvent({...newEvent, description: e.target.value})} className="text-sm" /></div>
                 </div>
-                <Button onClick={() => { if (newEvent.title && newEvent.date) { admin.addEventMutation.mutate(newEvent); setNewEvent({ title: '', date: '', category: '', image: '', description: '' }); } }} className="shadow-dmk"><Plus className="h-4 w-4 mr-2" /> Add Event</Button>
-
+                <Button onClick={() => { if (newEvent.title && newEvent.date) { admin.addEventMutation.mutate(newEvent); setNewEvent({ title: '', date: '', category: '', image: '', description: '' }); } }} className="shadow-dmk w-full sm:w-auto"><Plus className="h-4 w-4 mr-2" /> Add Event</Button>
+<br />
                 <div className="overflow-x-auto">
                   <Table>
-                    <TableHeader><TableRow className="bg-muted/30"><TableHead>Image</TableHead><TableHead>Date</TableHead><TableHead>Title</TableHead><TableHead>Category</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>
+                    <TableHeader><TableRow className="bg-muted/30"><TableHead className="text-[11px] md:text-sm">Image</TableHead><TableHead className="text-[11px] md:text-sm">Date</TableHead><TableHead className="text-[11px] md:text-sm">Title</TableHead><TableHead className="text-[11px] md:text-sm">Category</TableHead><TableHead className="text-right text-[11px] md:text-sm">Actions</TableHead></TableRow></TableHeader>
                     <TableBody>
                       {admin.eventsQuery.data?.map((ev: any) => (
                         <TableRow key={ev.id} className="hover:bg-muted/20">
-                          <TableCell>{ev.image && <img src={ev.image} alt="" className="w-16 h-10 object-cover rounded-md" />}</TableCell>
-                          <TableCell className="text-sm">{new Date(ev.date).toLocaleDateString()}</TableCell>
-                          <TableCell className="font-medium">{ev.title}</TableCell>
-                          <TableCell><Badge variant="outline" className="text-xs">{ev.category}</Badge></TableCell>
+                          <TableCell>{ev.image && <img src={ev.image} alt="" className="w-12 h-8 md:w-16 md:h-10 object-cover rounded" />}</TableCell>
+                          <TableCell className="text-[10px] md:text-sm whitespace-nowrap">{new Date(ev.date).toLocaleDateString()}</TableCell>
+                          <TableCell className="font-semibold text-xs md:text-sm">{ev.title}</TableCell>
+                          <TableCell><Badge variant="outline" className="text-[10px] md:text-xs px-1 h-5">{ev.category}</Badge></TableCell>
                           <TableCell>
                             <div className="flex gap-1 justify-end">
                               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setEditEvent(ev)}><Pencil className="h-3.5 w-3.5" /></Button>
@@ -383,16 +387,16 @@ const AdminDashboard = () => {
                 </div>
                 <Button onClick={() => { if (newGallery.src) { admin.addGalleryMutation.mutate(newGallery); setNewGallery({ src: '', alt: '', description: '' }); } }} className="shadow-dmk"><Plus className="h-4 w-4 mr-2" /> Add Image</Button>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                   {admin.galleryQuery.data?.map((img: any) => (
-                    <div key={img.id} className="relative group rounded-xl overflow-hidden border border-border/50 shadow-sm hover:shadow-md transition-shadow">
-                      <img src={img.src} alt={img.alt || ''} className="w-full h-36 object-cover" />
-                      <div className="absolute inset-0 bg-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                        <button onClick={() => setEditGallery(img)} className="bg-primary text-primary-foreground p-2 rounded-full hover:scale-110 transition-transform"><Pencil className="h-3.5 w-3.5" /></button>
-                        <button onClick={() => admin.deleteGalleryMutation.mutate(img.id)} className="bg-destructive text-destructive-foreground p-2 rounded-full hover:scale-110 transition-transform"><Trash2 className="h-3.5 w-3.5" /></button>
+                    <div key={img.id} className="relative group rounded-lg md:rounded-xl overflow-hidden border border-border/50 shadow-sm hover:shadow-md transition-shadow">
+                      <img src={img.src} alt={img.alt || ''} className="w-full h-24 md:h-36 object-cover" />
+                      <div className="absolute inset-0 bg-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 md:gap-2 text-primary-foreground">
+                        <button onClick={() => setEditGallery(img)} className="bg-primary p-1.5 md:p-2 rounded-full hover:scale-110 transition-transform"><Pencil className="h-3 w-3 md:h-3.5 md:w-3.5" /></button>
+                        <button onClick={() => admin.deleteGalleryMutation.mutate(img.id)} className="bg-destructive p-1.5 md:p-2 rounded-full hover:scale-110 transition-transform"><Trash2 className="h-3 w-3 md:h-3.5 md:w-3.5" /></button>
                       </div>
-                      <div className="p-2">
-                        <p className="text-xs text-muted-foreground truncate">{img.alt || img.description || 'No description'}</p>
+                      <div className="p-1.5 md:p-2 bg-card">
+                        <p className="text-[10px] md:text-xs text-muted-foreground truncate">{img.alt || img.description || 'No description'}</p>
                       </div>
                     </div>
                   ))}
@@ -405,26 +409,26 @@ const AdminDashboard = () => {
           <TabsContent value="news">
             <SectionCard icon={Newspaper} title="News Management" description="Add and manage news articles">
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 bg-muted/20 rounded-xl border border-border/50">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3 md:p-4 bg-muted/20 rounded-xl border border-border/50">
                   <div><Label className="text-xs font-medium">Headline</Label><Input value={newNews.headline} onChange={e => setNewNews({...newNews, headline: e.target.value})} className="mt-1" /></div>
                   <div><Label className="text-xs font-medium">Source</Label><Input value={newNews.source} onChange={e => setNewNews({...newNews, source: e.target.value})} className="mt-1" /></div>
                   <div><Label className="text-xs font-medium">URL</Label><Input value={newNews.url} onChange={e => setNewNews({...newNews, url: e.target.value})} className="mt-1" /></div>
                   <div><Label className="text-xs font-medium">Image URL</Label><Input value={newNews.image} onChange={e => setNewNews({...newNews, image: e.target.value})} className="mt-1" /></div>
                   <div><Label className="text-xs font-medium">Publish Date</Label><Input type="date" value={newNews.publish_date} onChange={e => setNewNews({...newNews, publish_date: e.target.value})} className="mt-1" /></div>
                 </div>
-                <Button onClick={() => { if (newNews.headline && newNews.url) { admin.addNewsMutation.mutate(newNews); setNewNews({ headline: '', url: '', image: '', source: '', publish_date: '' }); } }} className="shadow-dmk"><Plus className="h-4 w-4 mr-2" /> Add News</Button>
+                <Button onClick={() => { if (newNews.headline && newNews.url) { admin.addNewsMutation.mutate(newNews); setNewNews({ headline: '', url: '', image: '', source: '', publish_date: '' }); } }} className="shadow-dmk w-full sm:w-auto"><Plus className="h-4 w-4 mr-2" /> Add News</Button>
 
                 <div className="overflow-x-auto">
                   <Table>
-                    <TableHeader><TableRow className="bg-muted/30"><TableHead>Image</TableHead><TableHead>Headline</TableHead><TableHead>Source</TableHead><TableHead>Date</TableHead><TableHead className="text-center">Active</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>
+                    <TableHeader><TableRow className="bg-muted/30"><TableHead className="text-[11px] md:text-sm">Image</TableHead><TableHead className="text-[11px] md:text-sm">Headline</TableHead><TableHead className="text-[11px] md:text-sm">Source</TableHead><TableHead className="text-[11px] md:text-sm">Date</TableHead><TableHead className="text-center text-[11px] md:text-sm">Active</TableHead><TableHead className="text-right text-[11px] md:text-sm">Actions</TableHead></TableRow></TableHeader>
                     <TableBody>
                       {admin.newsQuery.data?.map((n: any) => (
                         <TableRow key={n.id} className="hover:bg-muted/20">
-                          <TableCell>{n.image && <img src={n.image} alt="" className="w-16 h-10 object-cover rounded-md" />}</TableCell>
-                          <TableCell><p className="max-w-[200px] truncate font-medium text-sm">{n.headline}</p></TableCell>
-                          <TableCell><Badge variant="outline" className="text-xs">{n.source}</Badge></TableCell>
-                          <TableCell className="text-xs text-muted-foreground">{new Date(n.publish_date).toLocaleDateString()}</TableCell>
-                          <TableCell className="text-center"><Switch checked={n.enabled} onCheckedChange={(v) => admin.updateNewsMutation.mutate({ id: n.id, enabled: v })} /></TableCell>
+                          <TableCell>{n.image && <img src={n.image} alt="" className="w-12 h-8 md:w-16 md:h-10 object-cover rounded" />}</TableCell>
+                          <TableCell><p className="max-w-[150px] md:max-w-[200px] truncate font-semibold text-xs md:text-sm">{n.headline}</p></TableCell>
+                          <TableCell><Badge variant="outline" className="text-[10px] md:text-xs px-1 h-5">{n.source}</Badge></TableCell>
+                          <TableCell className="text-[10px] md:text-xs text-muted-foreground">{new Date(n.publish_date).toLocaleDateString()}</TableCell>
+                          <TableCell className="text-center"><Switch checked={n.enabled} onCheckedChange={(v) => admin.updateNewsMutation.mutate({ id: n.id, enabled: v })} className="scale-75 md:scale-100" /></TableCell>
                           <TableCell>
                             <div className="flex gap-1 justify-end">
                               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setEditNews(n)}><Pencil className="h-3.5 w-3.5" /></Button>

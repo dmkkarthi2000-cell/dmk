@@ -28,16 +28,16 @@ const SocialMediaSection = () => {
   const platforms = (settings as any).social_media || defaultPlatforms;
 
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-10 md:py-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-8 md:mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-2">{t('section.social')}</h2>
-          <p className="text-muted-foreground">{tr('Follow DMK across platforms')}</p>
+          <h2 className="text-2xl md:text-4xl font-black tracking-tight mb-2">{t('section.social')}</h2>
+          <p className="text-xs md:text-sm text-muted-foreground">{tr('Follow DMK across platforms')}</p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto">
@@ -56,14 +56,14 @@ const SocialMediaSection = () => {
                 whileHover={{ y: -6, scale: 1.02 }}
                 className="group"
               >
-                <div className="relative bg-card rounded-2xl p-5 md:p-6 text-center shadow-md hover:shadow-dmk transition-all duration-500 border border-border/50 overflow-hidden">
+                <div className="relative bg-card rounded-xl md:rounded-2xl p-4 md:p-6 text-center shadow-md hover:shadow-dmk transition-all duration-500 border border-border/50 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative z-10">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${gradientMap[p.platform] || 'from-primary to-primary/80'} rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="h-5 w-5 text-background" />
+                    <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${gradientMap[p.platform] || 'from-primary to-primary/80'} rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="h-4 w-4 md:h-5 md:w-5 text-background" />
                     </div>
-                    <div className="font-black text-xl md:text-2xl">{p.followers}</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">{p.name}</div>
+                    <div className="font-black text-lg md:text-2xl">{p.followers}</div>
+                    <div className="text-[10px] md:text-xs text-muted-foreground mt-0.5">{p.name}</div>
                   </div>
                 </div>
               </motion.a>

@@ -47,38 +47,39 @@ const HeroSection = () => {
       <FloatingParticle delay={0.5} x="25%" y="60%" size={5} />
       <FloatingParticle delay={1.5} x="90%" y="80%" size={7} />
 
-      <div className="container mx-auto px-4 py-16 md:py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="flex flex-col items-center lg:items-start"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-md border border-border/50 rounded-full text-sm font-semibold mb-6 shadow-lg"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-md border border-border/50 rounded-full text-xs md:text-sm font-semibold mb-6 shadow-lg"
             >
-              <Sparkles className="h-4 w-4 text-primary" />
+              <Sparkles className="h-3.5 w-3.5 md:h-4 md:w-4 text-primary" />
               <span>{tr(heroContent.subtitle) || t('hero.tagline')}</span>
             </motion.div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-foreground leading-[1.1] mb-6 tracking-tight">
+<br />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground leading-[1.1] mb-6 tracking-tight max-w-2xl">
               {tr(heroContent.title)}
             </h1>
-
-            <p className="text-base md:text-lg text-foreground/60 mb-8 max-w-lg leading-relaxed">
+<br />
+            <p className="text-sm md:text-lg text-foreground/60 mb-8 max-w-lg leading-relaxed">
               {tr(heroContent.tagline) || t('hero.subtitle')}
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/events">
+<br />
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Link to="/events" className="w-full sm:w-auto">
                 <Button size="lg" className="gap-2 shadow-dmk w-full sm:w-auto text-base px-8 h-12 rounded-xl">
                   {t('hero.cta')} <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link to="/videos">
+              <Link to="/videos" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="gap-2 border-foreground/20 bg-card/50 backdrop-blur-sm w-full sm:w-auto text-base px-8 h-12 rounded-xl hover:bg-card/80">
                   <Play className="h-4 w-4" /> {t('section.videos')}
                 </Button>
