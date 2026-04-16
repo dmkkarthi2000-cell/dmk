@@ -197,18 +197,18 @@ const VideosSection = ({ limit, showHeader = true, showAll = false }: Props) => 
   }, []);
 
   return (
-    <section className="py-12 md:py-20 bg-muted/30">
+    <section className="py-10 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         {showHeader && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4"
+            className="flex flex-col sm:flex-row items-center sm:items-center justify-between mb-8 md:mb-10 gap-4 text-center sm:text-left"
           >
             <div>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight">{t('section.videos')}</h2>
-              <p className="text-muted-foreground mt-1">{tr('Latest updates from DMK channels')}</p>
+              <h2 className="text-2xl md:text-4xl font-black tracking-tight">{t('section.videos')}</h2>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">{tr('Latest updates from DMK channels')}</p>
             </div>
             {!isVideosPage && (
               <Link to="/videos">

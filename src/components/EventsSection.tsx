@@ -20,18 +20,18 @@ const EventsSection = ({ limit = 4, showHeader = true }: Props) => {
   const events = (eventsQuery.data || []).slice(0, limit);
 
   return (
-    <section className="py-12 md:py-20">
+    <section className="py-10 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         {showHeader && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4"
+            className="flex flex-col sm:flex-row items-center sm:items-center justify-between mb-8 md:mb-10 gap-4 text-center sm:text-left"
           >
             <div>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight">{t('section.events')}</h2>
-              <p className="text-muted-foreground mt-1">{tr('Stay updated with DMK activities')}</p>
+              <h2 className="text-2xl md:text-4xl font-black tracking-tight">{t('section.events')}</h2>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">{tr('Stay updated with DMK activities')}</p>
             </div>
             <Link to="/events">
               <Button variant="outline" className="gap-2 rounded-xl">
