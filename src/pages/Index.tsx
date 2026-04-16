@@ -7,10 +7,12 @@ import NewsSection from '@/components/NewsSection';
 import GallerySection from '@/components/GallerySection';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
+import SEO from '@/components/SEO';
 
 const Index = () => {
   return (
     <Layout>
+      <SEO />
       <HeroSection />
       <SocialMediaSection />
       <VideosSection limit={3} />

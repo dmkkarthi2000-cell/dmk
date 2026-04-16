@@ -43,6 +43,14 @@ const translations: Record<string, Record<Language, string>> = {
   'admin.password': { en: 'Password', ta: 'கடவுச்சொல்' },
   'watch': { en: 'Watch Now', ta: 'இப்போது பாருங்கள்' },
   'readMore': { en: 'Read More', ta: 'மேலும் படிக்க' },
+  'seo.title.home': { en: 'DMK | Dravida Munnetra Kazhagam | M.K. Stalin', ta: 'திமுக | திராவிட முன்னேற்றக் கழகம் | மு.க. ஸ்டாலின்' },
+  'seo.description.home': { en: 'Official website of Dravida Munnetra Kazhagam (DMK). Building a progressive Tamil Nadu under the leadership of M.K. Stalin.', ta: 'திராவிட முன்னேற்றக் கழகத்தின் (திமுக) அதிகாரப்பூர்வ இணையதளம். மு.க. ஸ்டாலின் தலைமையில் முற்போக்கான தமிழ்நாட்டை உருவாக்குதல்.' },
+  'seo.title.events': { en: 'Upcoming Events | DMK Politics', ta: 'வரவிருக்கும் நிகழ்வுகள் | திமுக அரசியல்' },
+  'seo.title.news': { en: 'Latest DMK News | Tamil Nadu Politics', ta: 'சமீபத்திய திமுக செய்திகள் | தமிழ்நாடு அரசியல்' },
+  'seo.title.gallery': { en: 'Photo Gallery | M.K. Stalin & DMK', ta: 'புகைப்பட தொகுப்பு | மு.க. ஸ்டாலின் & திமுக' },
+  'seo.title.videos': { en: 'Latest Videos | DMK Speeches & Events', ta: 'சமீபத்திய காணொளிகள் | திமுக உரைகள் மற்றும் நிகழ்வுகள்' },
+  'seo.title.about': { en: 'About DMK | History & Leadership', ta: 'திமுக பற்றி | வரலாறு மற்றும் தலைமை' },
+  'seo.title.contact': { en: 'Contact DMK | Get in Touch', ta: 'திமுகவை தொடர்பு கொள்ளுங்கள் | எங்களை தொடர்பு கொள்ள' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
